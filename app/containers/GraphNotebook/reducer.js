@@ -4,9 +4,22 @@
  *
  */
 import produce from 'immer';
-import { UPDATE_GRAPH } from './constants';
+import { UPDATE_GRAPH, TOGGLE_SHOW_OPTIONS } from './constants';
+
+import { Colors } from '@blueprintjs/core';
 
 export const initialState = {
+  showOptions: false,
+  options: {
+    layout: {
+      hierarchical: false, // make this an option
+    },
+    edges: {
+      // color: '#000000',
+      color: Colors.GRAY4, // dark mode
+    },
+    height: '750px',
+  },
   graph: {
     nodes: [
       { id: 1, label: 'Node 1', title: 'node 1 tootip text' },
@@ -35,6 +48,9 @@ const graphNotebookReducer = (state = initialState, action) =>
         } catch (e) {
           break;
         }
+        break;
+      case TOGGLE_SHOW_OPTIONS:
+        draft.showOptions = !state.showOptions;
         break;
     }
   });

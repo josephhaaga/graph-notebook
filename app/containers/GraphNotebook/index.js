@@ -11,7 +11,14 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { Alignment, Button, Navbar } from '@blueprintjs/core';
+import {
+  Alignment,
+  Button,
+  Navbar,
+  Drawer,
+  Classes,
+  Colors,
+} from '@blueprintjs/core';
 
 import Graph from 'react-graph-vis';
 import AceEditor from 'react-ace';
@@ -22,24 +29,24 @@ import 'ace-builds/src-noconflict/theme-solarized_dark';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectGraphNotebook, { makeSelectGraph } from './selectors';
-import { updateGraph } from './actions';
+import makeSelectGraphNotebook, {
+  makeSelectGraph,
+  makeSelectOptions,
+  makeSelectShowOptions,
+} from './selectors';
+import { updateGraph, toggleShowOptions } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-export function GraphNotebook({ graph, onUpdateGraph }) {
+export function GraphNotebook({
+  graph,
+  onUpdateGraph,
+  options,
+  showOptions,
+  toggleOptions,
+}) {
   useInjectReducer({ key: 'graphNotebook', reducer });
   useInjectSaga({ key: 'graphNotebook', saga });
-
-  const options = {
-    layout: {
-      hierarchical: true, // make this an option
-    },
-    edges: {
-      color: '#000000',
-    },
-    height: '750px',
-  };
 
   const events = {
     // select: function(event) {
@@ -48,22 +55,65 @@ export function GraphNotebook({ graph, onUpdateGraph }) {
     // },
   };
 
+  const DARK_MODE = true;
+
   return (
-    <div>
+    <div className={DARK_MODE && 'bp3-dark'}>
       <Helmet>
         <title>GraphNotebook</title>
         <meta name="description" content="Description of GraphNotebook" />
       </Helmet>
       <Navbar>
         <Navbar.Group align={Alignment.LEFT}>
-          <Navbar.Heading>Blueprint</Navbar.Heading>
+          <Navbar.Heading>Graph Notebook</Navbar.Heading>
           <Navbar.Divider />
           <Button className="bp3-minimal" icon="home" text="Home" />
-          <Button className="bp3-minimal" icon="document" text="Files" />
+        </Navbar.Group>
+        <Navbar.Group align={Alignment.RIGHT}>
+          <Navbar.Divider />
+          <Button
+            className="bp3-minimal"
+            icon="settings"
+            text="Settings"
+            onClick={toggleOptions}
+          />
         </Navbar.Group>
       </Navbar>
+      <Drawer
+        icon="info-sign"
+        onClose={toggleOptions}
+        title="Settings"
+        // {...this.state}
+        isOpen={showOptions}
+      >
+        <div className={Classes.DRAWER_BODY}>
+          <div className={Classes.DIALOG_BODY}>
+            <p>
+              <strong>
+                Data integration is the seminal problem of the digital age. For
+                over ten years, we’ve helped the world’s premier organizations
+                rise to the challenge.
+              </strong>
+            </p>
+            <p>
+              Palantir Foundry radically reimagines the way enterprises interact
+              with data by amplifying and extending the power of data
+              integration. With Foundry, anyone can source, fuse, and transform
+              data into any shape they desire. Business analysts become data
+              engineers — and leaders in their organization’s data revolution.
+            </p>
+          </div>
+        </div>
+        <div className={Classes.DRAWER_FOOTER}>Footer</div>
+      </Drawer>
       <div style={{ display: 'flex' }}>
-        <div style={{ width: '50%' }}>
+        <div
+          style={{
+            width: '50%',
+            // backgroundColor: DARK_MODE ? '#293742' : 'white',
+            backgroundColor: DARK_MODE ? Colors.GRAY1 : 'white',
+          }}
+        >
           <Graph
             graph={graph}
             options={options}
@@ -77,7 +127,7 @@ export function GraphNotebook({ graph, onUpdateGraph }) {
           <AceEditor
             placeholder="Placeholder Text"
             mode="json"
-            theme="solarized_dark"
+            theme={DARK_MODE && 'solarized_dark'}
             style={{ width: '100%', height: '100%' }}
             name="blah2"
             onLoad={() => {}}
@@ -102,17 +152,22 @@ GraphNotebook.propTypes = {
   // dispatch: PropTypes.func.any,
   graphNotebook: PropTypes.any,
   graph: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  options: PropTypes.object,
+  onUpdateGraph: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   graphNotebook: makeSelectGraphNotebook(),
   graph: makeSelectGraph(),
+  options: makeSelectOptions(),
+  showOptions: makeSelectShowOptions(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     onUpdateGraph: evt => dispatch(updateGraph(evt)),
+    toggleOptions: evt => dispatch(toggleShowOptions(evt)),
   };
 }
 

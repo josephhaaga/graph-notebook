@@ -7,7 +7,6 @@ import { initialState } from './reducer';
 
 // const selectGraphNotebookDomain = state => state.graphNotebook || initialState;
 const selectGraphNotebookDomain = state => {
-  console.warn(state);
   return state.graphNotebook || initialState;
 };
 
@@ -31,5 +30,22 @@ const makeSelectGraph = () =>
     st => st.graph,
   );
 
+const makeSelectOptions = () =>
+  createSelector(
+    selectGraphNotebookDomain,
+    st => st.options,
+  );
+
+const makeSelectShowOptions = () =>
+  createSelector(
+    selectGraphNotebookDomain,
+    st => st.showOptions,
+  );
+
 export default makeSelectGraphNotebook;
-export { selectGraphNotebookDomain, makeSelectGraph };
+export {
+  selectGraphNotebookDomain,
+  makeSelectGraph,
+  makeSelectOptions,
+  makeSelectShowOptions,
+};
