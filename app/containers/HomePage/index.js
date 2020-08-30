@@ -15,7 +15,7 @@ import AceEditor from 'react-ace';
 import { Alignment, Button, Navbar } from '@blueprintjs/core';
 
 import '@blueprintjs/core/lib/css/blueprint.css';
-import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/theme-solarized_dark';
 
 export default function HomePage() {
@@ -42,7 +42,7 @@ export default function HomePage() {
     edges: {
       color: '#000000',
     },
-    height: '800px',
+    height: '750px',
   };
 
   const events = {
@@ -78,17 +78,19 @@ export default function HomePage() {
         <div style={{ width: '50%' }}>
           <AceEditor
             placeholder="Placeholder Text"
-            mode="javascript"
+            mode="json"
             theme="solarized_dark"
             style={{ width: '100%', height: '100%' }}
             name="blah2"
             onLoad={() => {}}
-            // onChange={this.onChange}
+            onChange={e => {
+              console.log(e);
+            }}
             fontSize={14}
             showPrintMargin
             showGutter
             highlightActiveLine
-            value={graph.toString()}
+            value={JSON.stringify(graph, null, 2)}
             setOptions={{
               enableBasicAutocompletion: false,
               enableLiveAutocompletion: false,
