@@ -42,10 +42,17 @@ const makeSelectShowOptions = () =>
     st => st.showOptions,
   );
 
+const makeSelectAnnotations = () =>
+  createSelector(
+    selectGraphNotebookDomain,
+    st => st.annotations,
+  );
+
 export default makeSelectGraphNotebook;
 export {
   selectGraphNotebookDomain,
   makeSelectGraph,
   makeSelectOptions,
   makeSelectShowOptions,
+  makeSelectAnnotations,
 };

@@ -33,6 +33,7 @@ import makeSelectGraphNotebook, {
   makeSelectGraph,
   makeSelectOptions,
   makeSelectShowOptions,
+  makeSelectAnnotations,
 } from './selectors';
 import { updateGraph, toggleShowOptions } from './actions';
 import reducer from './reducer';
@@ -44,6 +45,7 @@ export function GraphNotebook({
   options,
   showOptions,
   toggleOptions,
+  annotations,
 }) {
   useInjectReducer({ key: 'graphNotebook', reducer });
   useInjectSaga({ key: 'graphNotebook', saga });
@@ -141,6 +143,7 @@ export function GraphNotebook({
               showLineNumbers: true,
               tabSize: 2,
             }}
+            // annotations={annotations}
           />
         </div>
       </div>
@@ -154,6 +157,7 @@ GraphNotebook.propTypes = {
   graph: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   options: PropTypes.object,
   onUpdateGraph: PropTypes.func,
+  annotations: PropTypes.array,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -161,6 +165,7 @@ const mapStateToProps = createStructuredSelector({
   graph: makeSelectGraph(),
   options: makeSelectOptions(),
   showOptions: makeSelectShowOptions(),
+  annotations: makeSelectAnnotations(),
 });
 
 function mapDispatchToProps(dispatch) {

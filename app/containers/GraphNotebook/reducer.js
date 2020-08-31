@@ -4,9 +4,8 @@
  *
  */
 import produce from 'immer';
-import { UPDATE_GRAPH, TOGGLE_SHOW_OPTIONS } from './constants';
-
 import { Colors } from '@blueprintjs/core';
+import { UPDATE_GRAPH, TOGGLE_SHOW_OPTIONS } from './constants';
 
 export const initialState = {
   showOptions: false,
@@ -35,6 +34,7 @@ export const initialState = {
       { from: 2, to: 5 },
     ],
   },
+  annotations: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -46,6 +46,18 @@ const graphNotebookReducer = (state = initialState, action) =>
           const g = JSON.parse(action.newGraphAsString);
           draft.graph = g;
         } catch (e) {
+          if (e instanceof SyntaxError) {
+            const regex = /(\d+)/g;
+            const errorCharIndex = parseInt(e.message.match(regex)[0], 10);
+            const lineWithError = action.newGraphAsString
+              .substr(0, errorCharIndex)
+              .split('\n').length;
+            draft.annotations = [
+              { row: lineWithError, column: 0, type: 'error', text: e.message },
+            ];
+          } else {
+            throw e; // re-throw the error unchanged
+          }
           break;
         }
         break;
