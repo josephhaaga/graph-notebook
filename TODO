@@ -11,3 +11,14 @@
 
 - Add a right-click ContextMenu to trigger analytics on the selected node/edge
     - what algorithms should be triggered this way?
+
+- Add a Share button to URL encode graphs, and tinyurl the link for sharing
+    - add functionality to load in following order:
+        1. URL encoded graph
+        2. LocalStorage (prompt?)
+        3. new default graph
+
+- Add hotlinks to particular graphs
+    - e.g. graph-notebook.joehaaga.xyz/karate loads Zachary's Karate graph
+        - could also load a "tour" that teaches users how to interpret the analytics/metrics in this particular domain
+            - e.g. "centrality indicates who is the sensei of the dojo"
