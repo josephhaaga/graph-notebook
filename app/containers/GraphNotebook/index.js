@@ -13,12 +13,16 @@ import { compose } from 'redux';
 
 import {
   Alignment,
+  AnchorButton,
+  Tooltip,
+  Intent,
   Button,
   Navbar,
   Drawer,
   Classes,
   Colors,
   Switch,
+  Dialog,
 } from '@blueprintjs/core';
 
 import Graph from 'react-graph-vis';
@@ -35,20 +39,27 @@ import makeSelectGraphNotebook, {
   makeSelectEdgeColor,
   makeSelectShowOptions,
   makeSelectHierarchical,
+  makeSelectShowAnalytics,
 } from './selectors';
-import { updateGraph, toggleShowOptions, toggleHierarchical } from './actions';
+import {
+  updateGraph,
+  toggleShowOptions,
+  toggleHierarchical,
+  toggleAnalytics,
+} from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
 export function GraphNotebook({
   graph,
   onUpdateGraph,
-  options,
   showOptions,
   toggleOptions,
   toggleHierarchicalView,
   hierarchical,
   edgeColor,
+  showAnalytics,
+  toggleShowAnalytics,
 }) {
   useInjectReducer({ key: 'graphNotebook', reducer });
   useInjectSaga({ key: 'graphNotebook', saga });
@@ -86,6 +97,12 @@ export function GraphNotebook({
           <Button className="bp3-minimal" icon="home" text="Home" />
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
+          <Button
+            className="bp3-minimal"
+            icon="chart"
+            text="Analytics"
+            onClick={toggleShowAnalytics}
+          />
           <Navbar.Divider />
           <Button
             className="bp3-minimal"
@@ -95,24 +112,47 @@ export function GraphNotebook({
           />
         </Navbar.Group>
       </Navbar>
-      <Drawer
+      <Dialog
         icon="info-sign"
         onClose={toggleOptions}
         title="Settings"
-        // {...this.state}
         isOpen={showOptions}
+      >
+        <div className={Classes.DIALOG_BODY}>
+          <p>
+            <Switch
+              checked={hierarchical}
+              label="Hierarchical"
+              alignIndicator={Alignment.LEFT}
+              large
+              onChange={toggleHierarchicalView}
+            />
+          </p>
+        </div>
+        <div className={Classes.DIALOG_FOOTER}>
+          <div className={Classes.DIALOG_FOOTER_ACTIONS}>
+            <Button onClick={toggleOptions}>Close</Button>
+            <Tooltip content="Visit the VisJS Network docs.">
+              <AnchorButton
+                intent={Intent.PRIMARY}
+                href="https://visjs.github.io/vis-network/docs/network/"
+                target="_blank"
+              >
+                What do these mean?
+              </AnchorButton>
+            </Tooltip>
+          </div>
+        </div>
+      </Dialog>
+      <Drawer
+        icon="info-sign"
+        onClose={toggleShowAnalytics}
+        title="Analytics"
+        isOpen={showAnalytics}
       >
         <div className={Classes.DRAWER_BODY}>
           <div className={Classes.DIALOG_BODY}>
-            <p>
-              <Switch
-                checked={hierarchical}
-                label="Hierarchical"
-                alignIndicator={Alignment.LEFT}
-                large
-                onChange={toggleHierarchicalView}
-              />
-            </p>
+            <p>Metrics go here</p>
           </div>
         </div>
         <div className={Classes.DRAWER_FOOTER}>Footer</div>
@@ -173,6 +213,7 @@ const mapStateToProps = createStructuredSelector({
   showOptions: makeSelectShowOptions(),
   hierarchical: makeSelectHierarchical(),
   edgeColor: makeSelectEdgeColor(),
+  showAnalytics: makeSelectShowAnalytics(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -181,6 +222,7 @@ function mapDispatchToProps(dispatch) {
     onUpdateGraph: evt => dispatch(updateGraph(evt)),
     toggleOptions: evt => dispatch(toggleShowOptions(evt)),
     toggleHierarchicalView: evt => dispatch(toggleHierarchical(evt)),
+    toggleShowAnalytics: evt => dispatch(toggleAnalytics(evt)),
   };
 }
 

@@ -37,8 +37,7 @@ const makeSelectEdgeColor = () =>
   createSelector(
     selectGraphNotebookDomain,
     st => st.edges,
-  ); 
-
+  );
 
 const makeSelectShowOptions = () =>
   createSelector(
@@ -46,6 +45,11 @@ const makeSelectShowOptions = () =>
     st => st.showOptions,
   );
 
+const makeSelectShowAnalytics = () =>
+  createSelector(
+    selectGraphNotebookDomain,
+    st => st.showAnalytics,
+  );
 
 export default makeSelectGraphNotebook;
 export {
@@ -54,4 +58,5 @@ export {
   makeSelectHierarchical,
   makeSelectEdgeColor,
   makeSelectShowOptions,
+  makeSelectShowAnalytics,
 };

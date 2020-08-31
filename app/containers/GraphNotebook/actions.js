@@ -8,6 +8,7 @@ import {
   UPDATE_GRAPH,
   TOGGLE_SHOW_OPTIONS,
   TOGGLE_HIERARCHICAL,
+  TOGGLE_ANALYTICS,
 } from './constants';
 
 export function updateGraph(newGraphAsString) {
@@ -26,5 +27,11 @@ export function toggleShowOptions() {
 export function toggleHierarchical() {
   return {
     type: TOGGLE_HIERARCHICAL,
+  };
+}
+
+export function toggleAnalytics() {
+  return {
+    type: TOGGLE_ANALYTICS,
   };
 }

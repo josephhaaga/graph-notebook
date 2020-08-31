@@ -9,10 +9,12 @@ import {
   UPDATE_GRAPH,
   TOGGLE_SHOW_OPTIONS,
   TOGGLE_HIERARCHICAL,
+  TOGGLE_ANALYTICS,
 } from './constants';
 
 export const initialState = {
   showOptions: false,
+  showAnalytics: false,
   hierarchical: false,
   edges: Colors.GRAY4,
   height: '750px',
@@ -50,6 +52,9 @@ const graphNotebookReducer = (state = initialState, action) =>
         break;
       case TOGGLE_HIERARCHICAL:
         draft.hierarchical = !state.hierarchical;
+        break;
+      case TOGGLE_ANALYTICS:
+        draft.showAnalytics = !state.showAnalytics;
         break;
     }
   });
