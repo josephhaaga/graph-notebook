@@ -4,22 +4,18 @@
  *
  */
 import produce from 'immer';
-import { UPDATE_GRAPH, TOGGLE_SHOW_OPTIONS } from './constants';
-
 import { Colors } from '@blueprintjs/core';
+import {
+  UPDATE_GRAPH,
+  TOGGLE_SHOW_OPTIONS,
+  TOGGLE_HIERARCHICAL,
+} from './constants';
 
 export const initialState = {
   showOptions: false,
-  options: {
-    layout: {
-      hierarchical: false, // make this an option
-    },
-    edges: {
-      // color: '#000000',
-      color: Colors.GRAY4, // dark mode
-    },
-    height: '750px',
-  },
+  hierarchical: false,
+  edges: Colors.GRAY4,
+  height: '750px',
   graph: {
     nodes: [
       { id: 1, label: 'Node 1', title: 'node 1 tootip text' },
@@ -51,6 +47,9 @@ const graphNotebookReducer = (state = initialState, action) =>
         break;
       case TOGGLE_SHOW_OPTIONS:
         draft.showOptions = !state.showOptions;
+        break;
+      case TOGGLE_HIERARCHICAL:
+        draft.hierarchical = !state.hierarchical;
         break;
     }
   });

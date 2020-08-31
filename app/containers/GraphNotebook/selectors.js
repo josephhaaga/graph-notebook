@@ -5,10 +5,7 @@ import { initialState } from './reducer';
  * Direct selector to the graphNotebook state domain
  */
 
-// const selectGraphNotebookDomain = state => state.graphNotebook || initialState;
-const selectGraphNotebookDomain = state => {
-  return state.graphNotebook || initialState;
-};
+const selectGraphNotebookDomain = state => state.graphNotebook || initialState;
 
 /**
  * Other specific selectors
@@ -30,11 +27,18 @@ const makeSelectGraph = () =>
     st => st.graph,
   );
 
-const makeSelectOptions = () =>
+const makeSelectHierarchical = () =>
   createSelector(
     selectGraphNotebookDomain,
-    st => st.options,
+    st => st.hierarchical,
   );
+
+const makeSelectEdgeColor = () =>
+  createSelector(
+    selectGraphNotebookDomain,
+    st => st.edges,
+  ); 
+
 
 const makeSelectShowOptions = () =>
   createSelector(
@@ -42,10 +46,12 @@ const makeSelectShowOptions = () =>
     st => st.showOptions,
   );
 
+
 export default makeSelectGraphNotebook;
 export {
   selectGraphNotebookDomain,
   makeSelectGraph,
-  makeSelectOptions,
+  makeSelectHierarchical,
+  makeSelectEdgeColor,
   makeSelectShowOptions,
 };

@@ -18,6 +18,7 @@ import {
   Drawer,
   Classes,
   Colors,
+  Switch,
 } from '@blueprintjs/core';
 
 import Graph from 'react-graph-vis';
@@ -31,10 +32,11 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectGraphNotebook, {
   makeSelectGraph,
-  makeSelectOptions,
+  makeSelectEdgeColor,
   makeSelectShowOptions,
+  makeSelectHierarchical,
 } from './selectors';
-import { updateGraph, toggleShowOptions } from './actions';
+import { updateGraph, toggleShowOptions, toggleHierarchical } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -44,6 +46,9 @@ export function GraphNotebook({
   options,
   showOptions,
   toggleOptions,
+  toggleHierarchicalView,
+  hierarchical,
+  edgeColor,
 }) {
   useInjectReducer({ key: 'graphNotebook', reducer });
   useInjectSaga({ key: 'graphNotebook', saga });
@@ -54,6 +59,19 @@ export function GraphNotebook({
     //   console.log(nodes, edges);
     // },
   };
+
+  const optionsObject = {
+    layout: {
+      hierarchical,
+    },
+    edges: {
+      // color: '#000000',
+      color: edgeColor, // dark mode
+    },
+    height: '750px',
+  };
+
+  console.log(optionsObject)
 
   const DARK_MODE = true;
 
@@ -89,18 +107,13 @@ export function GraphNotebook({
         <div className={Classes.DRAWER_BODY}>
           <div className={Classes.DIALOG_BODY}>
             <p>
-              <strong>
-                Data integration is the seminal problem of the digital age. For
-                over ten years, we’ve helped the world’s premier organizations
-                rise to the challenge.
-              </strong>
-            </p>
-            <p>
-              Palantir Foundry radically reimagines the way enterprises interact
-              with data by amplifying and extending the power of data
-              integration. With Foundry, anyone can source, fuse, and transform
-              data into any shape they desire. Business analysts become data
-              engineers — and leaders in their organization’s data revolution.
+              <Switch
+                checked={hierarchical}
+                label="Hierarchical"
+                alignIndicator={Alignment.LEFT}
+                large
+                onChange={toggleHierarchicalView}
+              />
             </p>
           </div>
         </div>
@@ -116,7 +129,7 @@ export function GraphNotebook({
         >
           <Graph
             graph={graph}
-            options={options}
+            options={optionsObject}
             events={events}
             // getNetwork={network => {
             //   //  if you want access to vis.js network api you can set the state in a parent component using this property
@@ -159,8 +172,9 @@ GraphNotebook.propTypes = {
 const mapStateToProps = createStructuredSelector({
   graphNotebook: makeSelectGraphNotebook(),
   graph: makeSelectGraph(),
-  options: makeSelectOptions(),
   showOptions: makeSelectShowOptions(),
+  hierarchical: makeSelectHierarchical(),
+  edgeColor: makeSelectEdgeColor(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -168,6 +182,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     onUpdateGraph: evt => dispatch(updateGraph(evt)),
     toggleOptions: evt => dispatch(toggleShowOptions(evt)),
+    toggleHierarchicalView: evt => dispatch(toggleHierarchical(evt)),
   };
 }
 

@@ -4,7 +4,11 @@
  *
  */
 
-import { UPDATE_GRAPH, TOGGLE_SHOW_OPTIONS } from './constants';
+import {
+  UPDATE_GRAPH,
+  TOGGLE_SHOW_OPTIONS,
+  TOGGLE_HIERARCHICAL,
+} from './constants';
 
 export function updateGraph(newGraphAsString) {
   return {
@@ -16,5 +20,11 @@ export function updateGraph(newGraphAsString) {
 export function toggleShowOptions() {
   return {
     type: TOGGLE_SHOW_OPTIONS,
-  }
+  };
+}
+
+export function toggleHierarchical() {
+  return {
+    type: TOGGLE_HIERARCHICAL,
+  };
 }
