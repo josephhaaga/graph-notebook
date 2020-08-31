@@ -5,3 +5,9 @@
     - These can be JSNetworkX graphs, run thru our converter function
         - "Generators" section on http://jsnetworkx.org/api/#/v/v0.3.4
         - http://vlado.fmf.uni-lj.si/pub/networks/data/Ucinet/UciData.htm
+
+- Add charts to visualize graph metrics
+    - see how they change over time when a node/edge is added/removed
+
+- Add a right-click ContextMenu to trigger analytics on the selected node/edge
+    - what algorithms should be triggered this way?
