@@ -23,6 +23,7 @@ import {
   Colors,
   Switch,
   Dialog,
+  Position,
 } from '@blueprintjs/core';
 
 import Graph from 'react-graph-vis';
@@ -148,6 +149,9 @@ export function GraphNotebook({
         icon="info-sign"
         onClose={toggleShowAnalytics}
         title="Analytics"
+        position={Position.BOTTOM}
+        hasBackdrop={false}
+        canOutsideClickClose={false}
         isOpen={showAnalytics}
       >
         <div className={Classes.DRAWER_BODY}>

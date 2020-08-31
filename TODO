@@ -1,2 +1,7 @@
-Need to add syntax highlighting; JSON errors prevent the graph from updating
-
+- Write import/export handles to convert VisJS graph syntax into JSNetworkX graph 
+    - http://jsnetworkx.org/api/#/v/v0.3.4/fromDictOfDicts
+- Add analytics to bottom drawer (using JSNetworkX for implementations)
+- Add a graph library in right-side drawer
+    - These can be JSNetworkX graphs, run thru our converter function
+        - "Generators" section on http://jsnetworkx.org/api/#/v/v0.3.4
+        - http://vlado.fmf.uni-lj.si/pub/networks/data/Ucinet/UciData.htm
