@@ -71,8 +71,6 @@ export function GraphNotebook({
     height: '750px',
   };
 
-  console.log(optionsObject)
-
   const DARK_MODE = true;
 
   return (

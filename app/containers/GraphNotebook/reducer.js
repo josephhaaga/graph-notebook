@@ -18,15 +18,15 @@ export const initialState = {
   height: '750px',
   graph: {
     nodes: [
-      { id: 1, label: 'Node 1', title: 'node 1 tootip text' },
-      { id: 2, label: 'Node 2', title: 'node 2 tootip text' },
-      { id: 3, label: 'Node 3', title: 'node 3 tootip text' },
-      { id: 4, label: 'Node 4', title: 'node 4 tootip text' },
-      { id: 5, label: 'Node 5', title: 'node 5 tootip text' },
+      { id: 1, label: 'Node 1', color: 'red' },
+      { id: 2, label: 'Node 2' },
+      { id: 3, label: 'Node 3' },
+      { id: 4, label: 'Node 4' },
+      { id: 5, label: 'Node 5' },
     ],
     edges: [
       { from: 1, to: 2, label: 'Edge 1' },
-      { from: 1, to: 3 },
+      { from: 1, to: 3, color: 'orange' },
       { from: 2, to: 4 },
       { from: 2, to: 5 },
     ],
