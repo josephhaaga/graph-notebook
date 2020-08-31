@@ -22,3 +22,6 @@
     - e.g. graph-notebook.joehaaga.xyz/karate loads Zachary's Karate graph
         - could also load a "tour" that teaches users how to interpret the analytics/metrics in this particular domain
             - e.g. "centrality indicates who is the sensei of the dojo"
+
+- Let users paste in graphs in any of the popular formats, and convert them to our format
+    - Adjacency list, edge list, JSON node link
