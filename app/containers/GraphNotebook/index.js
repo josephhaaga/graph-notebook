@@ -80,7 +80,7 @@ export function GraphNotebook({
       // color: '#000000',
       color: edgeColor, // dark mode
     },
-    height: '750px',
+    height: '750px', // shrink to 350px when Analytics drawer is open?
   };
 
   const DARK_MODE = true;
