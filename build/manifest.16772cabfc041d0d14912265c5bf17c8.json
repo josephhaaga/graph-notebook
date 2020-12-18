@@ -56,12 +56,12 @@
       "type": "image/png"
     }
   ],
-  "name": "React Boilerplate",
-  "short_name": "React BP",
+  "name": "Graph Notebook",
+  "short_name": "graph-notebook",
   "orientation": "portrait",
   "display": "standalone",
   "start_url": ".",
-  "description": "My React Boilerplate-based project!",
+  "description": "A playground for graphs",
   "background_color": "#fafafa",
   "theme_color": "#b1624d"
 }
