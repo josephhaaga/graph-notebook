@@ -1,4 +1,3 @@
-import { createBrowserHistory } from 'history';
-const basename = process.env.PUBLIC_PATH;
-const history = createBrowserHistory({ basename });
+import { createHistory } from 'history';
+const history = createHistory();
 export default history;

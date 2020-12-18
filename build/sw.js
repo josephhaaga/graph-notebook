@@ -2,14 +2,14 @@ var __wpo = {
   "assets": {
     "main": [
       "/favicon.ico",
-      "/runtime.a694c9b87d84b49e8b1b.js",
+      "/runtime.0847ebd0443f50e4fa9f.js",
       "/"
     ],
     "additional": [
       "/npm.babel.76f1f99bf768c850a3a8.chunk.js",
       "/npm.intl.1bc5a9d77c683035570b.chunk.js",
       "/npm.webpack.a9285997573a6d97a934.chunk.js",
-      "/main.c356f90b922cf3cbebdc.chunk.js",
+      "/main.7d8cd63c22133a5ddbbc.chunk.js",
       "/npm.blueprintjs.44a0a047f077de61f553.chunk.js",
       "/npm.connected-react-router.777af80bb66798ed66de.chunk.js",
       "/npm.emotion.5bccb31819dd326febe0.chunk.js",
@@ -31,7 +31,7 @@ var __wpo = {
     "c1b89a2a83caab6d1236472d6c6e751558c5b1d2": "/npm.babel.76f1f99bf768c850a3a8.chunk.js",
     "843b345a86371700f448f683add3b8388801722b": "/npm.intl.1bc5a9d77c683035570b.chunk.js",
     "f473db7ec5ceb7844ced1e93e1701e591d2cce16": "/npm.webpack.a9285997573a6d97a934.chunk.js",
-    "03bf7a53084e27de118cefad3675a20dfab462a6": "/main.c356f90b922cf3cbebdc.chunk.js",
+    "5442f1f8e4b7dcd2b5123524020bcf23c4102023": "/main.7d8cd63c22133a5ddbbc.chunk.js",
     "ef4e16bfb4171a3c3a2ac94417558efd2e9e802f": "/npm.blueprintjs.44a0a047f077de61f553.chunk.js",
     "2e779824bf362d13b9906f223557898089e8f693": "/npm.connected-react-router.777af80bb66798ed66de.chunk.js",
     "2af301f339a956852f5c0eed36e5bfd8e3fb3aa3": "/npm.emotion.5bccb31819dd326febe0.chunk.js",
@@ -41,15 +41,15 @@ var __wpo = {
     "1628afd7e3d188634c4aa0b2d27ea5e7f59a08fd": "/npm.react-app-polyfill.1c85ea4a4c368d6cb69a.chunk.js",
     "d27c354c2ca913e524522a13da2fa78143a83e4c": "/npm.react-redux.ff895c7d9f5268d355ce.chunk.js",
     "43d532f1c51ab566b1fb6885b07df7de0d686c48": "/npm.redux-saga.eacef114eec3e076dd08.chunk.js",
-    "7e78645cac79c26f1cf332e1ac12c741d5865fb6": "/runtime.a694c9b87d84b49e8b1b.js",
+    "8a43436381db940252088b121b94ff2920b4883f": "/runtime.0847ebd0443f50e4fa9f.js",
     "a5e6c8f5a5e21ae9727b3cd6f605fb9bc5c73d91": "/14.4525795c892968a6fe56.chunk.js",
     "8c67a4e6c7483b66df10c58536c017730a086907": "/15.408c9148a6e6643b4964.chunk.js",
     "92685836f306abe727791678de887b69dab75d30": "/16.c2b7dc539ee4eb779204.chunk.js",
-    "b2a3f8dac369a903ee9323b20ae4312749a627a4": "/"
+    "041e9ac9fe8f8866be0591850eedbec86e01adf2": "/"
   },
   "strategy": "changed",
   "responseStrategy": "cache-first",
-  "version": "12/5/2020, 8:08:04 PM",
+  "version": "12/18/2020, 3:16:55 PM",
   "name": "webpack-offline",
   "pluginVersion": "5.0.6",
   "relativePaths": false
@@ -134,7 +134,7 @@ var __wpo = {
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/graph-notebook/";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
